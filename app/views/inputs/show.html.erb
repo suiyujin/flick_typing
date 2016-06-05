@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @input.text %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @input.score %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @input.time %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @input.team %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @input.answer %>
+</p>
+
+<%= link_to 'Edit', edit_input_path(@input) %> |
+<%= link_to 'Back', inputs_path %>
