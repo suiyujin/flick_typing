@@ -26,6 +26,8 @@ class InputsController < ApplicationController
   def create
     @input = Input.new(input_params)
 
+    calculate_score
+
     respond_to do |format|
       if @input.save
         format.html { redirect_to @input, notice: 'Input was successfully created.' }
@@ -70,5 +72,19 @@ class InputsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def input_params
       params.require(:input).permit(:text, :score, :time, :team_id, :answer_id)
+    end
+
+    def calculate_score
+      answer = @input.answer
+
+      diff = check_diff(@input, answer)
+
+      ## TODO: 正しい計算
+      @input.score = 100.0 + rand
+    end
+
+    def check_diff(input, anwer)
+      ## TODO: diffを調べる
+      { penalty_count: 2 }
     end
 end
