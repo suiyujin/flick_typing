@@ -11,6 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160605135725) do
 
+  create_table "answers", force: :cascade do |t|
+    t.text     "text",       limit: 65535, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "inputs", force: :cascade do |t|
+    t.text     "text",       limit: 65535, null: false
+    t.float    "score",      limit: 24,    null: false
+    t.time     "time",                     null: false
+    t.integer  "team_id",    limit: 4
+    t.integer  "answer_id",  limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "inputs", ["answer_id"], name: "index_inputs_on_answer_id", using: :btree
+  add_index "inputs", ["team_id"], name: "index_inputs_on_team_id", using: :btree
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_foreign_key "inputs", "answers"
+  add_foreign_key "inputs", "teams"
 end
