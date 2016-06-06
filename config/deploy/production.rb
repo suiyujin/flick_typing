@@ -6,6 +6,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
+server ENV.fetch('SERVER'), user: ENV.fetch('SSH_USER'), roles: %w(app db web)
 
 
 
@@ -17,6 +18,8 @@
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
+role :app, "#{ENV.fetch('SSH_USER')}@#{ENV.fetch('SERVER')}"
+role :web, "#{ENV.fetch('SSH_USER')}@#{ENV.fetch('SERVER')}"
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
@@ -46,6 +49,12 @@
 #    forward_agent: false,
 #    auth_methods: %w(password)
 #  }
+set :ssh_options, {
+  keys: [ENV.fetch('SSH_KEY')],
+  forward_agent: false,
+  auth_methods: %w(publickey),
+  port: ENV.fetch('SSH_PORT')
+}
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
