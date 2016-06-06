@@ -92,7 +92,7 @@ class InputsController < ApplicationController
 
     def check_diff(input, answer)
       ## diffを調べる
-      diff = Diff::LCS.diff(answer.text, input.text)
+      diff = Diff::LCS.diff(input.text, answer.text)
       { penalty_count: diff.flatten.size }
     end
 end
