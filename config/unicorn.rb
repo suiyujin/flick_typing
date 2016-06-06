@@ -3,10 +3,10 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true  # 更新時ダウンタイム無し
 
-listen "/var/www/flick_typing/shared/tmp/sockets/unicorn.sock"
-pid "/var/www/flick_typing/shared/tmp/pids/unicorn.pid"
+listen "#{ENV.fetch('DEPLOY_TO')}/shared/tmp/sockets/unicorn.sock"
+pid "#{ENV.fetch('DEPLOY_TO')}/shared/tmp/pids/unicorn.pid"
 
-working_directory "/var/www/flick_typing/current"
+working_directory "#{ENV.fetch('DEPLOY_TO')}/current"
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
