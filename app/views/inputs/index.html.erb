@@ -8,6 +8,7 @@
       <th>Text</th>
       <th>Score</th>
       <th>Time</th>
+      <th>Miss</th>
       <th>Team</th>
       <th>Answer</th>
       <th colspan="3"></th>
@@ -20,6 +21,7 @@
         <td><%= input.text %></td>
         <td><%= input.score %></td>
         <td><%= input.time %></td>
+        <td><%= input.penalty_count %></td>
         <td><%= input.team.name %></td>
         <td><%= input.answer.id %></td>
         <td><%= link_to 'Show', input %></td>

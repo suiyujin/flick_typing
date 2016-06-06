@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605135725) do
+ActiveRecord::Schema.define(version: 20160606124811) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "text",       limit: 65535, null: false
@@ -20,13 +20,14 @@ ActiveRecord::Schema.define(version: 20160605135725) do
   end
 
   create_table "inputs", force: :cascade do |t|
-    t.text     "text",       limit: 65535, null: false
-    t.float    "score",      limit: 24,    null: false
-    t.time     "time",                     null: false
-    t.integer  "team_id",    limit: 4
-    t.integer  "answer_id",  limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "text",          limit: 65535, null: false
+    t.float    "score",         limit: 24,    null: false
+    t.time     "time",                        null: false
+    t.integer  "team_id",       limit: 4
+    t.integer  "answer_id",     limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "penalty_count", limit: 4,     null: false
   end
 
   add_index "inputs", ["answer_id"], name: "index_inputs_on_answer_id", using: :btree

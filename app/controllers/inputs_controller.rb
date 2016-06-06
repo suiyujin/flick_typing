@@ -74,7 +74,7 @@ class InputsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def input_params
-      params.require(:input).permit(:text, :score, :time, :team_id, :answer_id)
+      params.require(:input).permit(:text, :score, :time, :penalty_count, :team_id, :answer_id)
     end
 
     def calculate_score
