@@ -4,7 +4,7 @@ class InputsController < ApplicationController
   # GET /inputs
   # GET /inputs.json
   def index
-    @inputs = Input.all
+    @inputs = Input.includes(:team, :answer).all
   end
 
   # GET /inputs/1
