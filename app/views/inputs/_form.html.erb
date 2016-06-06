@@ -11,17 +11,12 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :team_id, :value => @team_id %>
+  <%= f.hidden_field :answer_id, :value => @answer_id %>
+
   <div class="field">
     <%= f.label :text %><br>
     <%= f.text_area :text %>
-  </div>
-  <div class="field">
-    <%= f.label :team_id %><br>
-    <%= f.text_field :team_id %>
-  </div>
-  <div class="field">
-    <%= f.label :answer_id %><br>
-    <%= f.text_field :answer_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

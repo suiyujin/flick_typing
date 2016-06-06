@@ -15,6 +15,8 @@ class InputsController < ApplicationController
   # GET /inputs/new
   def new
     @input = Input.new
+    @team_id = params[:team][:id]
+    @answer_id = params[:answer][:id]
   end
 
   # GET /inputs/1/edit

@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<%= form_tag({ controller: :inputs, action: :new }, { method: 'get' }) do %>
+  <%= collection_select(:team, :id, Team.all, :id, :name) %>
+  <%= collection_select(:answer, :id, Answer.all, :id, :head_text) %>
+  <%= submit_tag('回答ページへ') %>
+<% end %>
+
+<hr>
+
 <h1>Listing Inputs</h1>
 
 <table>
@@ -31,7 +39,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Input', new_input_path %>
