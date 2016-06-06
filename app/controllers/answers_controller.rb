@@ -29,6 +29,8 @@ class AnswersController < ApplicationController
     # 改行、タブ、空白など取り除く
     @answer.text = @answer.text.gsub(/(\s|　)/, '')
 
+    @answer.head_text = @answer.text[0...10] + '...'
+
     respond_to do |format|
       if @answer.save
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
