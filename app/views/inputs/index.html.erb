@@ -20,8 +20,8 @@
         <td><%= input.text %></td>
         <td><%= input.score %></td>
         <td><%= input.time %></td>
-        <td><%= input.team %></td>
-        <td><%= input.answer %></td>
+        <td><%= input.team.name %></td>
+        <td><%= input.answer.id %></td>
         <td><%= link_to 'Show', input %></td>
         <td><%= link_to 'Edit', edit_input_path(input) %></td>
         <td><%= link_to 'Destroy', input, method: :delete, data: { confirm: 'Are you sure?' } %></td>
