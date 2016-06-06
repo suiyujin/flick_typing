@@ -26,6 +26,9 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
 
+    # 改行、タブ、空白など取り除く
+    @answer.text = @answer.text.gsub(/(\s|　)/, '')
+
     respond_to do |format|
       if @answer.save
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }

@@ -26,6 +26,9 @@ class InputsController < ApplicationController
   def create
     @input = Input.new(input_params)
 
+    # 改行、タブ、空白など取り除く
+    @input.text = @input.text.gsub(/(\s|　)/, '')
+
     calculate_score
 
     respond_to do |format|
