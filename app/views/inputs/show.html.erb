@@ -6,23 +6,28 @@
 </p>
 
 <p>
-  <strong>Score:</strong>
-  <%= @input.score %>
+  <strong>Total Time:</strong>
+  <%= @input.total_time.hour %>分<%= @input.total_time.min %>秒
 </p>
 
 <p>
   <strong>Time:</strong>
-  <%= @input.time %>
+  <%= @input.time.hour %>分<%= @input.time.min %>秒
+</p>
+
+<p>
+  <strong>Miss:</strong>
+  <%= @input.penalty_count %>
 </p>
 
 <p>
   <strong>Team:</strong>
-  <%= @input.team %>
+  <%= @input.team.name %>
 </p>
 
 <p>
   <strong>Answer:</strong>
-  <%= @input.answer %>
+  <%= @input.answer.id %>
 </p>
 
 <%= link_to 'Edit', edit_input_path(@input) %> |

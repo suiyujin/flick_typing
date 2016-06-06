@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Text</th>
-      <th>Score</th>
+      <th>Total Time</th>
       <th>Time</th>
       <th>Miss</th>
       <th>Team</th>
@@ -19,8 +19,8 @@
     <% @inputs.each do |input| %>
       <tr>
         <td><%= input.text %></td>
-        <td><%= input.score %></td>
-        <td><%= input.time %></td>
+        <td><%= input.total_time.hour %>分<%= input.total_time.min %>秒</td>
+        <td><%= input.time.hour %>分<%= input.time.min %>秒</td>
         <td><%= input.penalty_count %></td>
         <td><%= input.team.name %></td>
         <td><%= input.answer.id %></td>

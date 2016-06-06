@@ -29,7 +29,10 @@ class InputsController < ApplicationController
     # 改行、タブ、空白など取り除く
     @input.text = @input.text.gsub(/(\s|　)/, '')
 
-    calculate_score
+    # TODO: 正しいtimeを入れる
+    @input.time = '01:00'
+
+    calculate_total_time
 
     respond_to do |format|
       if @input.save
@@ -74,16 +77,17 @@ class InputsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def input_params
-      params.require(:input).permit(:text, :score, :time, :penalty_count, :team_id, :answer_id)
+      params.require(:input).permit(:text, :team_id, :answer_id)
     end
 
-    def calculate_score
+    def calculate_total_time
       answer = @input.answer
 
       diff = check_diff(@input, answer)
+      miss = diff[:penalty_count]
 
-      ## TODO: 経過時間にペナルティ時間を加えるようにする
-      @input.score = 100.0 - (diff[:penalty_count].to_f * 1.0)
+      @input.penalty_count = miss
+      @input.total_time = @input.time + miss.minute
     end
 
     def check_diff(input, answer)
