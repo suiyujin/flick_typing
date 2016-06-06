@@ -82,12 +82,13 @@ class InputsController < ApplicationController
 
       diff = check_diff(@input, answer)
 
-      ## TODO: 正しい計算
-      @input.score = 100.0 + rand
+      ## TODO: 経過時間にペナルティ時間を加えるようにする
+      @input.score = 100.0 - (diff[:penalty_count].to_f * 1.0)
     end
 
-    def check_diff(input, anwer)
-      ## TODO: diffを調べる
-      { penalty_count: 2 }
+    def check_diff(input, answer)
+      ## diffを調べる
+      diff = Diff::LCS.diff(answer.text, input.text)
+      { penalty_count: diff.flatten.size }
     end
 end
