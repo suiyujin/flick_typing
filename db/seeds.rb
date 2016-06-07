@@ -11,3 +11,10 @@ p 'teams inserted.'
 # answers
 Answer.create(make_dummy_data(CSV.read('db/seed_data/answers.csv')))
 p 'answers inserted.'
+
+# inputs
+make_dummy_data(CSV.read('db/seed_data/inputs.csv')).each do |line|
+  Input.create(line)
+  sleep 1
+end
+p 'inputs inserted.'
