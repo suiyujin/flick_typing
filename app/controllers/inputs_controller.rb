@@ -71,6 +71,14 @@ class InputsController < ApplicationController
     end
   end
 
+  def result
+    @results = params[:team_ids].split(',').map do |team_id|
+      params[:answer_ids].split(',').map do |answer_id|
+        Input.recent_input_by_team_and_answer(team_id, answer_id)
+      end.flatten
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_input

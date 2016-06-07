@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Results</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Team</th>
+      <% @results.first.size.times.with_index(1) do |_, i| %>
+        <th><%= i %>問目</th>
+      <% end %>
+      <th>合計</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.first.team.name %></td>
+        <% result.each do |answer| %>
+          <td><%= answer.correct_count %></td>
+        <% end %>
+        <td><%= result.inject(0) { |sum, answer| sum + answer.correct_count } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
