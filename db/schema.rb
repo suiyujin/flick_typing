@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606155703) do
+ActiveRecord::Schema.define(version: 20160607131815) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "text",       limit: 65535, null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160606155703) do
     t.datetime "updated_at",                  null: false
     t.integer  "penalty_count", limit: 4,     null: false
     t.time     "total_time",                  null: false
+    t.integer  "correct_count", limit: 4,     null: false
   end
 
   add_index "inputs", ["answer_id"], name: "index_inputs_on_answer_id", using: :btree

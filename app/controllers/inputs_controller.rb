@@ -34,7 +34,7 @@ class InputsController < ApplicationController
     # TODO: 正しいtimeを入れる
     @input.time = '01:00'
 
-    calculate_total_time
+    calculate_score
 
     respond_to do |format|
       if @input.save
@@ -82,19 +82,25 @@ class InputsController < ApplicationController
       params.require(:input).permit(:text, :team_id, :answer_id)
     end
 
-    def calculate_total_time
+    def calculate_score
       answer = @input.answer
 
       diff = check_diff(@input, answer)
+      correct = diff[:correct_count]
       miss = diff[:penalty_count]
+      binding.pry
 
+      @input.correct_count = correct
       @input.penalty_count = miss
-      @input.total_time = @input.time + miss.minute
+      @input.total_time = '01:00'
     end
 
     def check_diff(input, answer)
-      ## diffを調べる
-      diff = Diff::LCS.diff(input.text, answer.text)
-      { penalty_count: diff.flatten.size }
+      ## 最長共通部分とdiffの数を調べる
+      input.text.extend(Diff::LCS)
+      {
+        correct_count: input.text.lcs(answer.text).size,
+        penalty_count: input.text.diff(answer.text).flatten.size
+      }
     end
 end

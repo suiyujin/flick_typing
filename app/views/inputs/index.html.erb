@@ -17,6 +17,7 @@
       <th>Total Time</th>
       <th>Time</th>
       <th>Miss</th>
+      <th>Correct</th>
       <th>Team</th>
       <th>Answer</th>
       <th colspan="3"></th>
@@ -30,6 +31,7 @@
         <td><%= input.total_time.hour %>分<%= input.total_time.min %>秒</td>
         <td><%= input.time.hour %>分<%= input.time.min %>秒</td>
         <td><%= input.penalty_count %></td>
+        <td><%= input.correct_count %></td>
         <td><%= input.team.name %></td>
         <td><%= input.answer.id %></td>
         <td><%= link_to 'Show', input %></td>
