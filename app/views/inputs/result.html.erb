@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Results</h1>
+<h3>結果発表</h3>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Team</th>
@@ -14,13 +14,17 @@
   </thead>
 
   <tbody>
-    <% @results.each do |result| %>
-      <tr>
-        <td><%= result.first.team.name %></td>
+    <% @results.each_with_index do |result, i| %>
+      <% if i == 0 %>
+        <tr class="success">
+      <% elsif i == 1 %>
+        <tr class="info">
+      <% end %>
+        <th scope="row"><%= result.first.team.name %></th>
         <% result.each do |answer| %>
           <td><%= answer.correct_count %></td>
         <% end %>
-        <td><%= result.inject(0) { |sum, answer| sum + answer.correct_count } %></td>
+        <td class="sum"><%= result.inject(0) { |sum, answer| sum + answer.correct_count } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,5 +1,14 @@
-<h1>New Input</h1>
+<ul class="pager">
+  <li class="previous">
+    <%= link_to '← 問題再選択', root_path %>
+  </li>
+</ul>
+
+<div class="well-label">
+  <strong><%= @answer.id %>問目</strong>
+</div>
+<div class="well well-sm">
+  <%= @answer.text.gsub(/\r\n/, '<br>') %>
+</div>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', inputs_path %>

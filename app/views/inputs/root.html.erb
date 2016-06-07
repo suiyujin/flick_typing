@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h3>フリックタイピング対決！</h3>
+
+<p>
+それぞれ選択して回答ページへ進んでください
+</p>
+
+<hr>
+
+<%= form_for @input, url: new_input_path, html: { method: :get } do |f| %>
+  <div class="field form-group">
+    <%= f.label 'チーム' %>
+    <%= f.collection_select(:team_id, Team.all, :id, :name, {}, { class: 'form-control' }) %>
+  </div>
+  <div class="field form-group">
+    <%= f.label 'お題' %>
+    <%= f.collection_select(:answer_id, Answer.all, :id, :head_text, {}, { class: 'form-control' }) %>
+  </div>
+  <div class="submit">
+    <%= f.submit('回答ページへ', class: 'btn btn-primary') %>
+  </div>
+<% end %>

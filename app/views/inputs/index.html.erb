@@ -1,9 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <%= form_tag({ controller: :inputs, action: :new }, { method: 'get' }) do %>
-  <%= collection_select(:team, :id, Team.all, :id, :name) %>
-  <%= collection_select(:answer, :id, Answer.all, :id, :head_text) %>
-  <%= submit_tag('回答ページへ') %>
+  <div class="field form-group">
+    <lavel for="team_id">チーム</lavel>
+    <%= collection_select(:team, :id, Team.all, :id, :name, {}, { class: 'form-control' }) %>
+  </div>
+  <div class="field form-group">
+    <lavel for="answer_id">お題</lavel>
+    <%= collection_select(:answer, :id, Answer.all, :id, :head_text, {}, { class: 'form-control' }) %>
+  </div>
+  <%= submit_tag('回答ページへ', class: 'btn btn-primary') %>
 <% end %>
 
 <hr>

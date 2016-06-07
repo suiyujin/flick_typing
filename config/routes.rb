@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'inputs#root'
   resources :inputs
   resources :answers
   resources :teams

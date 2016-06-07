@@ -1,6 +1,12 @@
 class InputsController < ApplicationController
   before_action :set_input, only: [:show, :edit, :update, :destroy]
 
+  def root
+    @input = Input.new
+    @input.team_id = params[:team_id].to_i if params[:team_id].present?
+    @input.answer_id = params[:before_answer_id].to_i.next if params[:before_answer_id].present?
+  end
+
   # GET /inputs
   # GET /inputs.json
   def index
@@ -15,8 +21,9 @@ class InputsController < ApplicationController
   # GET /inputs/new
   def new
     @input = Input.new
-    @team_id = params[:team][:id]
-    @answer_id = params[:answer][:id]
+    @team_id = params[:input][:team_id]
+    @answer_id = params[:input][:answer_id]
+    @answer = Answer.find(@answer_id)
   end
 
   # GET /inputs/1/edit
@@ -38,7 +45,7 @@ class InputsController < ApplicationController
 
     respond_to do |format|
       if @input.save
-        format.html { redirect_to @input, notice: 'Input was successfully created.' }
+        format.html { redirect_to root_path(team_id: params[:input][:team_id], before_answer_id: params[:input][:answer_id]), notice: '回答を送信しました' }
         format.json { render :show, status: :created, location: @input }
       else
         format.html { render :new }
@@ -93,10 +100,12 @@ class InputsController < ApplicationController
     def calculate_score
       answer = @input.answer
 
+      # 改行、タブ、空白など取り除く
+      answer.text = answer.text.gsub(/(\s|　)/, '')
+
       diff = check_diff(@input, answer)
       correct = diff[:correct_count]
       miss = diff[:penalty_count]
-      binding.pry
 
       @input.correct_count = correct
       @input.penalty_count = miss

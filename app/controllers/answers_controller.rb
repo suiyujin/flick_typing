@@ -27,9 +27,9 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
 
     # 改行、タブ、空白など取り除く
-    @answer.text = @answer.text.gsub(/(\s|　)/, '')
+    # @answer.text = @answer.text.gsub(/(\s|　)/, '')
 
-    @answer.head_text = @answer.text[0...10] + '...'
+    @answer.head_text = "#{Answer.last.id.next} : #{@answer.text.gsub(/(\s|　)/, '')[0...10]}..."
 
     respond_to do |format|
       if @answer.save
