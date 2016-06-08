@@ -17,7 +17,9 @@
   <strong>お題</strong>
 </div>
 <div class="well well-sm">
-  <%= @answer.text.gsub(/\r\n/, '<br>') %>
+  <% @answer.text.split("\r\n").each do |line| %>
+    <div><%= line %></div>
+  <% end %>
 </div>
 
 <hr>
