@@ -2,7 +2,7 @@
 
 <ul class="pager">
   <li class="previous">
-    <%= link_to '← チーム・お題を再選択', root_path %>
+    <%= link_to '← チーム・お題を再選択', root_path(team_id: params[:input][:team_id], before_answer_id: (params[:input][:answer_id].to_i - 1)) %>
   </li>
 </ul>
 
