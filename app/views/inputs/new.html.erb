@@ -1,14 +1,25 @@
+<h3>回答ページ</h3>
+
 <ul class="pager">
   <li class="previous">
-    <%= link_to '← 問題再選択', root_path %>
+    <%= link_to '← チーム・お題を再選択', root_path %>
   </li>
 </ul>
 
 <div class="well-label">
-  <strong><%= @answer.id %>問目</strong>
+  <strong>チーム</strong>
+</div>
+<div class="well well-sm">
+  <%= @team.name %>
+</div>
+
+<div class="well-label">
+  <strong>お題</strong>
 </div>
 <div class="well well-sm">
   <%= @answer.text.gsub(/\r\n/, '<br>') %>
 </div>
+
+<hr>
 
 <%= render 'form' %>

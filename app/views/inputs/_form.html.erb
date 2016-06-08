@@ -15,10 +15,10 @@
   <%= f.hidden_field :answer_id, :value => @answer_id %>
 
   <div class="field form-group">
-    <%= f.label :text %><br>
+    <%= f.label '回答' %><br>
     <%= f.text_area :text, rows: 8, class: 'form-control', placeholder: '回答を入力' %>
   </div>
   <div class="actions">
-    <%= f.submit class: 'btn btn-primary btn-sm' %>
+    <%= f.submit '回答を送信', class: 'btn btn-primary' %>
   </div>
 <% end %>

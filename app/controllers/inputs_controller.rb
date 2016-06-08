@@ -23,6 +23,7 @@ class InputsController < ApplicationController
     @input = Input.new
     @team_id = params[:input][:team_id]
     @answer_id = params[:input][:answer_id]
+    @team = Team.find(@team_id)
     @answer = Answer.find(@answer_id)
   end
 
