@@ -29,8 +29,7 @@ class AnswersController < ApplicationController
     # 改行、タブ、空白など取り除く
     # @answer.text = @answer.text.gsub(/(\s|　)/, '')
 
-    last_answer = Answer.last
-    next_answer_id = last_answer.nil? ? 1 : last_answer.id.next
+    next_answer_id = Answer.count + 1
     @answer.head_text = "#{next_answer_id} : #{@answer.text.gsub(/(\s|　)/, '')[0...20]}..."
 
     respond_to do |format|
