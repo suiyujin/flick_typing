@@ -2,30 +2,34 @@
 
 <h3>結果発表</h3>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Team</th>
-      <% @results.first.size.times.with_index(1) do |_, i| %>
-        <th><%= i %>問目</th>
-      <% end %>
-      <th>合計</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @results.each_with_index do |result, i| %>
-      <% if i == 0 %>
-        <tr class="success">
-      <% elsif i == 1 %>
-        <tr class="info">
-      <% end %>
-        <th scope="row"><%= result.first.team.name %></th>
-        <% result.each do |answer| %>
-          <td><%= answer.correct_count %></td>
+<% if @results.flatten.empty? %>
+  <p>回答がありません</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Team</th>
+        <% @results.first.size.times.with_index(1) do |_, i| %>
+          <th><%= i %>問目</th>
         <% end %>
-        <td class="sum"><%= result.inject(0) { |sum, answer| sum + answer.correct_count } %></td>
+        <th>合計</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @results.each_with_index do |result, i| %>
+        <% if i == 0 %>
+          <tr class="success">
+        <% elsif i == 1 %>
+          <tr class="info">
+        <% end %>
+          <th scope="row"><%= result.first.team.name %></th>
+          <% result.each do |answer| %>
+            <td><%= answer.correct_count %></td>
+          <% end %>
+          <td class="sum"><%= result.inject(0) { |sum, answer| sum + answer.correct_count } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
